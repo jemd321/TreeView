@@ -141,8 +141,24 @@ namespace TreeView
         {
             List<Item> foundItems = _childItems.FindAll(item => searchRegex.IsMatch(item.Name));
             List<Folder> foundFolders = _childFolders.FindAll(folder => searchRegex.IsMatch(folder.Name));
+            var searchResults = new SearchResult(foundFolders, foundItems);
 
-            return new SearchResult(foundFolders, foundItems);
+            foreach (Folder folder in ChildFolders)
+            {
+                SearchChildren(searchRegex, searchResults);
+            }
+
+            return searchResults;
+        }
+
+        private void SearchChildren(Regex searchRegex, SearchResult searchResults)
+        {
+            searchResults.FoundItems.AddRange(_childItems.FindAll(item => searchRegex.IsMatch(item.Name)));
+            searchResults.FoundFolders.AddRange(_childFolders.FindAll(folder => searchRegex.IsMatch(folder.Name)));
+            foreach (Folder folder in ChildFolders)
+            {
+                SearchChildren(searchRegex, searchResults);
+            }
         }
     }
 }

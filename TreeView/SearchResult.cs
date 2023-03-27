@@ -5,9 +5,6 @@
     /// </summary>
     public class SearchResult
     {
-        private readonly List<Folder> _foundFolders;
-        private readonly List<Item> _foundItems;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="SearchResult"/> class.
         /// </summary>
@@ -15,8 +12,8 @@
         /// <param name="foundItems">A collection containing any <see cref="Item"/>s that matched the search criteria.</param>
         public SearchResult(List<Folder> foundFolders, List<Item> foundItems)
         {
-            _foundFolders = foundFolders;
-            _foundItems = foundItems;
+            FoundFolders = foundFolders;
+            FoundItems = foundItems;
         }
 
         /// <summary>
@@ -27,11 +24,11 @@
         /// <summary>
         /// Gets a sequence of any <see cref="Folder"/>s that matched the search criteria.
         /// </summary>
-        public IEnumerable<Folder> FoundFolders => _foundFolders;
+        public List<Folder> FoundFolders { get; }
 
         /// <summary>
         /// Gets a sequence of any <see cref="Item"/>s that matched the search criteria.
         /// </summary>
-        public IEnumerable<Item> FoundItems => _foundItems;
+        public List<Item> FoundItems { get; }
     }
 }
