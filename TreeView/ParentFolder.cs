@@ -139,26 +139,23 @@ namespace TreeView
         /// <returns>A <see cref="SearchResult"/> instance that encompasses the result of the search and contains the data found.</returns>
         public SearchResult Search(Regex searchRegex)
         {
-            List<Item> foundItems = _childItems.FindAll(item => searchRegex.IsMatch(item.Name));
-            List<Folder> foundFolders = _childFolders.FindAll(folder => searchRegex.IsMatch(folder.Name));
-            var searchResults = new SearchResult(foundFolders, foundItems);
+            var searchResults = new SearchResult(new List<Folder>(), new List<Item>());
 
-            foreach (Folder folder in ChildFolders)
-            {
-                SearchChildren(searchRegex, searchResults);
-            }
+            SearchChildren(searchRegex, searchResults);
 
             return searchResults;
         }
 
-        private void SearchChildren(Regex searchRegex, SearchResult searchResults)
+        private SearchResult SearchChildren(Regex searchRegex, SearchResult searchResults)
         {
             searchResults.FoundItems.AddRange(_childItems.FindAll(item => searchRegex.IsMatch(item.Name)));
             searchResults.FoundFolders.AddRange(_childFolders.FindAll(folder => searchRegex.IsMatch(folder.Name)));
             foreach (Folder folder in ChildFolders)
             {
-                SearchChildren(searchRegex, searchResults);
+                searchResults = folder.SearchChildren(searchRegex, searchResults);
             }
+
+            return searchResults;
         }
     }
 }
