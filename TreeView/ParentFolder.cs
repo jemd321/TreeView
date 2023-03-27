@@ -58,7 +58,7 @@ namespace TreeView
         {
             foreach (Folder folder in folders)
             {
-                _childFolders.Add(folder);
+                AddFolder(folder);
             }
         }
 
@@ -90,7 +90,7 @@ namespace TreeView
         {
             foreach (Item item in items)
             {
-                _childItems.Add(item);
+                AddItem(item);
             }
         }
 
