@@ -34,7 +34,21 @@ namespace TreeView
         /// Adds a <see cref="Folder"/> as a child of this node.
         /// </summary>
         /// <param name="folder">The child folder to be added.</param>
-        public void AddFolder(Folder folder) => _childFolders.Add(folder);
+        public void AddFolder(Folder folder)
+        {
+            folder.Parent = this;
+            _childFolders.Add(folder);
+        }
+
+        /// <summary>
+        /// Adds a <see cref="Folder"/> as a child of this node.
+        /// </summary>
+        /// <param name="folderName">The name of the folder to be added.</param>
+        public void AddFolder(string folderName)
+        {
+            var folder = new Folder(this, folderName);
+            _childFolders.Add(folder);
+        }
 
         /// <summary>
         /// Adds a sequence of <see cref="Folder"/>s as children of this node.
@@ -55,6 +69,16 @@ namespace TreeView
         public void AddItem(Item item)
         {
             item.Parent = this;
+            _childItems.Add(item);
+        }
+
+        /// <summary>
+        /// Adds an <see cref="Item"/> as a child of this node.
+        /// </summary>
+        /// <param name="itemName">The name of the child item to be added.</param>
+        public void AddItem(string itemName)
+        {
+            var item = new Item(this, itemName);
             _childItems.Add(item);
         }
 
