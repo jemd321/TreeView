@@ -131,9 +131,7 @@ namespace TreeView.Tests
         [TestMethod]
         public void Search_ChildItemMatchingRegex_FindsMatch()
         {
-            Folder parentFolder = CreateEmptyTestFolder();
             (Folder testFolder, Item testItem) = CreateTestFolderWithOneItem();
-            parentFolder.AddFolder(testFolder);
             const string REGEXPATTERN = "testItem";
             var searchRegex = new Regex(REGEXPATTERN);
 
