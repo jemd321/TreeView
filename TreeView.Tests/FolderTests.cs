@@ -143,6 +143,25 @@ namespace TreeView.Tests
         }
 
         [TestMethod]
+        public void Search_SubFolderMatchingRegex_FindsMatch()
+        {
+            (Folder testFolder, Item testItem) = CreateTestFolderWithOneItem();
+            var subFolder = new Folder(testFolder, "subfolder");
+            testFolder.AddFolder(subFolder);
+            var lowestSubFolder = new Folder(testFolder, "lowestSubfolder");
+            subFolder.AddFolder(lowestSubFolder);
+
+            const string REGEXPATTERN = "lowestSubfolder";
+            var searchRegex = new Regex(REGEXPATTERN);
+
+            SearchResult searchResult = testFolder.Search(searchRegex);
+
+            Assert.IsTrue(searchResult.ResultFound);
+            Assert.IsFalse(searchResult.FoundItems.Any());
+            Assert.IsTrue(searchResult.FoundFolders.Single() == lowestSubFolder);
+        }
+
+        [TestMethod]
         public void Search_MismatchingRegex_FindsNoMatches()
         {
             (Folder testFolder, _) = CreateTestFolderWithOneItem();
