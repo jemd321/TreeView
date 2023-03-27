@@ -139,7 +139,7 @@ namespace TreeView
         /// <returns>A <see cref="SearchResult"/> instance that encompasses the result of the search and contains the data found.</returns>
         public SearchResult Search(Regex searchRegex)
         {
-            var searchResults = new SearchResult(new List<Folder>(), new List<Item>());
+            var searchResults = new SearchResult();
 
             SearchChildren(searchRegex, searchResults);
 
