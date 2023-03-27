@@ -39,7 +39,7 @@ namespace TreeView
         /// <summary>
         /// Adds a sequence of <see cref="Folder"/>s as children of this node.
         /// </summary>
-        /// <param name="folders">The seqence of child folders to be added.</param>
+        /// <param name="folders">The sequence of child folders to be added.</param>
         public void AddFolders(IEnumerable<Folder> folders)
         {
             foreach (Folder folder in folders)
@@ -61,7 +61,7 @@ namespace TreeView
         /// <summary>
         /// Adds a sequence of <see cref="Item"/>s as children of this node.
         /// </summary>
-        /// <param name="items">The seqence of child items to be added.</param>
+        /// <param name="items">The sequence of child items to be added.</param>
         public void AddItems(IEnumerable<Item> items)
         {
             foreach (Item item in items)
