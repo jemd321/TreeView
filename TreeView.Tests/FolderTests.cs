@@ -145,7 +145,7 @@ namespace TreeView.Tests
         [TestMethod]
         public void Search_SubFolderMatchingRegex_FindsMatch()
         {
-            (Folder testFolder, Item testItem) = CreateTestFolderWithOneItem();
+            (Folder testFolder, _) = CreateTestFolderWithOneItem();
             var subFolder = new Folder(testFolder, "subfolder");
             testFolder.AddFolder(subFolder);
             var lowestSubFolder = new Folder(testFolder, "lowestSubfolder");
